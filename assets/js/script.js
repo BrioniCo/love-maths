@@ -7,16 +7,16 @@ document.addEventListener("DOMContentLoaded", function() {
     for(let button of buttons) {
         button.addEventListener("click", function() {
             if (this.getAttribute("data-type") === "submit") {
-                checkAnswer();
+            checkAnswer();
             } else {
                 let gameType = this.getAttribute("data-type");
                 runGame(gameType);
             }
-        });
+        })
     }
 
     runGame("addition");
-});
+})
 
 /**
  * The main game loop, called when the script is first loaded
@@ -46,7 +46,7 @@ function runGame(gameType) {
 function checkAnswer() {
 
     let userAnswer = parseInt(document.getElementById("answer-box").value);
-    let calculatedAnswer = calculatedCorrectAnswer();
+    let calculatedAnswer = calculateCorrectAnswer();
     let isCorrect = userAnswer === calculatedAnswer[0];
 
     if (isCorrect) {
@@ -60,6 +60,7 @@ function checkAnswer() {
  * Gets the operands and the operator directly from the DOM and calculates the correct answer
  */
 function calculateCorrectAnswer() {
+
 let operand1 = parseInt(document.getElementById('operand1').innerText);
 let operand2 = parseInt(document.getElementById('operand2').innerText);
 let operator = document.getElementbyId('operator').innerText;
@@ -76,8 +77,11 @@ if (operator === "+") {
  }
 }
 
+/**
+ * Gets the current score from the dom and increments it by 1
+ */
 function incrementScore() {
-
+    let oldScore="scores"
 }
 
 function incrementWrongAnswer() {
