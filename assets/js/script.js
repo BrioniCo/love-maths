@@ -39,9 +39,22 @@ function runGame(gameType) {
     throw `Unknown game type: ${gameType}. Aborting!`;
  }
 }
-
+/**
+ * Checks the answer against the first element in the returned 
+ * calculatedCorrectAnswer array
+ */
 function checkAnswer() {
 
+    let userAnswer = parseInt(document.getElementById("answer-box").value);
+    let calculatedAnswer = calculatedCorrectAnswer();
+    let isCorrect = userAnswer === calculatedAnswer[0];
+
+    if (isCorrect) {
+        alert("Hey, you got it right!");
+    } else { 
+        alert(`Aw, you answered ${userAnswer}. The correct answer is: ${calculatedAnswer[0]}!`)
+    }
+    runGame(calculatedAnswer[1]);
 }
 /**
  * Gets the operands and the operator directly from the DOM and calculates the correct answer
