@@ -14,9 +14,16 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+     
+    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    });
 
     runGame("addition");
-})
+
+});
 
 /**
  * The main game loop, called when the script is first loaded
@@ -25,6 +32,8 @@ document.addEventListener("DOMContentLoaded", function() {
 function runGame(gameType) {
 
     document.getElementById("answer-box").value = "";
+
+    document.getElementById("answer-box").focus();
 
     // Creates two random numbers between 1 and 25
  let num1 = Math.floor(Math.random()* 25) + 1;
@@ -65,21 +74,23 @@ function checkAnswer() {
  */
 function calculateCorrectAnswer() {
 
-    let operand1 = parseInt(document.getElementById("operand1").innerText);
-    let operand2 = parseInt(document.getElementById("operand2").innerText);
-    let operator = document.getElementbyId("operator").innerText;
+    let operand1 = parseInt(document.getElementById('operand1').innerText);
+    let operand2 = parseInt(document.getElementById('operand2').innerText);
+    let operator = document.getElementById("operator").innerText;
 
     if (operator === "+") {
-    return [operand1 + operand2, "addition"];   
+        return [operand1 + operand2, "addition"];
     } else if (operator === "x") {
-    return[operand1 * operand2, "multipy"];
+        return [operand1 * operand2, "multiply"];
     } else if (operator === "-") {
-    return [operand1 - operand2, "subtract"];
-    } else { 
-    alert(`Unimplemented operator ${operator}`);
-    throw `Unimplemented operator ${operator}. Aborting`;
+        return [operand1 - operand2, "subtract"];
+    } else {
+        alert(`Unimplemented operator ${operator}`);
+        throw `Unimplemented operator ${operator}. Aborting!`;
     }
-    }
+
+}
+
 
 /**
  * Gets the current score from the dom and increments it by 1
