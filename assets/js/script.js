@@ -62,6 +62,7 @@ function checkAnswer() {
 
     if (isCorrect) {
         alert("Hey, you got it right!");
+        incrementScore();
     } else { 
         alert(`Aw, you answered ${userAnswer}. The correct answer is: ${calculatedAnswer[0]}!`);
         incrementWrongAnswer();
@@ -96,10 +97,19 @@ function calculateCorrectAnswer() {
  * Gets the current score from the dom and increments it by 1
  */
 function incrementScore() {
-    let oldScore="scores"
+
+    let oldScore= parseInt(document.getElementById("score").innerText);
+    document.getElementById("score").innerText = ++oldScore;
+
 }
 
+/**
+ * Gets the current tally of incorrect tries from the dom and increments it by 1
+ */
 function incrementWrongAnswer() {
+
+    let oldScore= parseInt(document.getElementById("incorrect").innerText);
+    document.getElementById("incorrect").innerText = ++oldScore;
 
 }
 
@@ -113,7 +123,7 @@ function displayAdditionQuestion(operand1, operand2) {
 function displaySubtractQuestion(operand1, operand2) {
 // The operands need a (ternary) else if statement added to ensure that the result is not negative
     document.getElementById("operand1").textContent = operand1 > operand2 ? operand1: operand2;
-    document.getElementById("operand2").textContent = operand1 > operand2 ? operand1: operand2;
+    document.getElementById("operand2").textContent = operand2;
     document.getElementById("operator").textContent = "-";
 }
 
