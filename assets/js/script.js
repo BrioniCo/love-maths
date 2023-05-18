@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
-     
+    //  This allows players to press "enter" instead of hitting submit button
     document.getElementById("answer-box").addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
             checkAnswer();
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function runGame(gameType) {
 
     document.getElementById("answer-box").value = "";
-
+// Each time the runGame is called, the answer box will gain the focus
     document.getElementById("answer-box").focus();
 
     // Creates two random numbers between 1 and 25
