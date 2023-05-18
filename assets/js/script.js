@@ -4,15 +4,15 @@
 document.addEventListener("DOMContentLoaded", function() {
     let buttons = document.getElementsByTagName("button");
 
-    for(let button of buttons) {
+    for( let button of buttons) {
         button.addEventListener("click", function() {
             if (this.getAttribute("data-type") === "submit") {
-            checkAnswer();
+              checkAnswer();
             } else {
                 let gameType = this.getAttribute("data-type");
                 runGame(gameType);
             }
-        })
+        });
     }
 
     runGame("addition");
@@ -23,6 +23,8 @@ document.addEventListener("DOMContentLoaded", function() {
  * and after the user's answer has been processed
  */
 function runGame(gameType) {
+
+    document.getElementById("answer-box").value = "";
 
     // Creates two random numbers between 1 and 25
  let num1 = Math.floor(Math.random()* 25) + 1;
@@ -52,8 +54,10 @@ function checkAnswer() {
     if (isCorrect) {
         alert("Hey, you got it right!");
     } else { 
-        alert(`Aw, you answered ${userAnswer}. The correct answer is: ${calculatedAnswer[0]}!`)
+        alert(`Aw, you answered ${userAnswer}. The correct answer is: ${calculatedAnswer[0]}!`);
+        incrementWrongAnswer();
     }
+
     runGame(calculatedAnswer[1]);
 }
 /**
@@ -61,21 +65,21 @@ function checkAnswer() {
  */
 function calculateCorrectAnswer() {
 
-let operand1 = parseInt(document.getElementById('operand1').innerText);
-let operand2 = parseInt(document.getElementById('operand2').innerText);
-let operator = document.getElementbyId('operator').innerText;
+    let operand1 = parseInt(document.getElementById("operand1").innerText);
+    let operand2 = parseInt(document.getElementById("operand2").innerText);
+    let operator = document.getElementbyId("operator").innerText;
 
-if (operator === "+") {
+    if (operator === "+") {
     return [operand1 + operand2, "addition"];   
-} else if (operator === "x") {
+    } else if (operator === "x") {
     return[operand1 * operand2, "multipy"];
- } else if (operator === "-") {
+    } else if (operator === "-") {
     return [operand1 - operand2, "subtract"];
- } else { 
+    } else { 
     alert(`Unimplemented operator ${operator}`);
     throw `Unimplemented operator ${operator}. Aborting`;
- }
-}
+    }
+    }
 
 /**
  * Gets the current score from the dom and increments it by 1
